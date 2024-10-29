@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Killer</title>
+    <style>
+        body {
+            background-color: black;
+            color: white;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            direction: rtl;
+        }
+        .hidden {
+            display: none;
+        }
+        .product {
+            margin: 20px;
+            text-align: center;
+        }
+        img {
+            max-width: 200px;
+            border: 2px solid white;
+            margin-bottom: 10px;
+        }
+        button {
+            padding: 10px 20px;
+            color: black;
+            background-color: white;
+            border: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>The Killer</h1>
+    <div id="step1">
+        <h2>اكتب اسمك ورقمك</h2>
+        <input type="text" id="name" placeholder="اسمك">
+        <input type="tel" id="phone" placeholder="رقمك">
+        <button onclick="submitForm()">تأكيد</button>
+    </div>
+
+    <div id="loading" class="hidden">
+        <h2>يرجى الانتظار لمدة 10 ثواني...</h2>
+    </div>
+
+    <div id="productList" class="hidden">
+        <h2>اختر المنتج</h2>
+        <div class="product">
+            <img src="knife1.jpg" alt="سكين 1">
+            <p>100 جنيه</p>
+            <button onclick="selectProduct('knife1.jpg', '100 جنيه')">اختر</button>
+        </div>
+        <div class="product">
+            <img src="knife2.jpg" alt="سكين 2">
+            <p>500 جنيه</p>
+            <button onclick="selectProduct('knife2.jpg', '500 جنيه')">اختر</button>
+        </div>
+        <div class="product">
+            <img src="knife3.jpg" alt="سكين 3">
+            <p>1000 جنيه</p>
+            <button onclick="selectProduct('knife3.jpg', '1000 جنيه')">اختر</button>
+        </div>
+    </div>
+
+    <div id="productDetail" class="hidden">
+        <h2>المنتج المختار</h2>
+        <img id="selectedImage" src="" alt="سكين مختار">
+        <p id="selectedPrice"></p>
+        <button onclick="buyProduct()">شراء</button>
+    </div>
+
+    <div id="finalMessage" class="hidden">
+        <h2>يرجى الانتظار لمدة 10 ثواني...</h2>
+    </div>
+
+    <div id="contactInfo" class="hidden">
+        <h2>اتصل بهذا الرقم للشراء: 04142549</h2>
+    </div>
+
+    <script>
+        function submitForm() {
+            document.getElementById("step1").classList.add("hidden");
+            document.getElementById("loading").classList.remove("hidden");
+            setTimeout(() => {
+                document.getElementById("loading").classList.add("hidden");
+                document.getElementById("productList").classList.remove("hidden");
+            }, 10000);
+        }
+
+        function selectProduct(imageSrc, price) {
+            document.getElementById("productList").classList.add("hidden");
+            document.getElementById("productDetail").classList.remove("hidden");
+            document.getElementById("selectedImage").src = imageSrc;
+            document.getElementById("selectedPrice").innerText = price;
+        }
+
+        function buyProduct() {
+            document.getElementById("productDetail").classList.add("hidden");
+            document.getElementById("finalMessage").classList.remove("hidden");
+            setTimeout(() => {
+                document.getElementById("finalMessage").classList.add("hidden");
+                document.getElementById("contactInfo").classList.remove("hidden");
+            }, 10000);
+        }
+    </script>
+
+</body>
+</html>
